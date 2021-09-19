@@ -1,0 +1,22 @@
+
+<html>
+    <head>
+        <title>Google Auth</title>
+        <meta name="google-signin-client_id" content="525830047001-athopvh800m5l0qlma96ovtj2rbcgnko.apps.googleusercontent.com">
+        <script src="https://apis.google.com/js/platform.js" async defer > </script>
+    </head>
+    <body>
+        <h1>Hi</h1>
+        <div class="g-signin2" data-onsuccess="onSignIn"> </div>
+        <div id="content"></div>
+    </body>
+
+    <script>
+        function onSignIn(googleUser) {
+            console.log('Hey' + JSON.stringify(googleUser.getBasicProfile()))
+
+            document.querySelector('#content').innerText = 
+            googleUser.getBasicProfile().getName();
+        }
+    </script>
+</html>
