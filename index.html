@@ -9,14 +9,26 @@
         <h1>Hi</h1>
         <div class="g-signin2" data-onsuccess="onSignIn"> </div>
         <div id="content"></div>
+        <button onclick="signOut();">Sign out</button>
+
+        <script>
+          function onSignIn(googleUser) {
+              console.log('Hey' + JSON.stringify(googleUser.getBasicProfile()));
+  
+              document.querySelector('#content').innerText = 
+              googleUser.getBasicProfile().getName();
+          }
+  
+          function signOut() {
+              var auth2 = gapi.auth2.getAuthInstance();
+              auth2.signOut().then(function () {
+              console.log('User signed out.');
+              document.querySelector('#content').innerText = ''
+              });
+              
+         }
+      </script>
     </body>
 
-    <script>
-        function onSignIn(googleUser) {
-            console.log('Hey' + JSON.stringify(googleUser.getBasicProfile()))
-
-            document.querySelector('#content').innerText = 
-            googleUser.getBasicProfile().getName();
-        }
-    </script>
+    
 </html>
