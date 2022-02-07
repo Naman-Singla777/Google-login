@@ -1,36 +1,88 @@
-
 <html>
-    <head>
-        <title>Google Auth</title>
-        <meta name="google-signin-client_id" content="525830047001-athopvh800m5l0qlma96ovtj2rbcgnko.apps.googleusercontent.com">
-        <script src="https://apis.google.com/js/platform.js" async defer > </script>
-    </head>
-    <body>
-        <h1>Hi</h1>
-        <h2>yo</h2>
-      
-        <div class="g-signin2" data-onsuccess="onSignIn"> </div>
-        <div id="content"></div>
-        <button onclick="signOut();">Sign out</button>
+  <head>
+    <title>Google Auth</title>
+    <meta
+      name="google-signin-client_id"
+      content="525830047001-athopvh800m5l0qlma96ovtj2rbcgnko.apps.googleusercontent.com"
+    />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link rel="stylesheet" href="google-index.css" >
+  </head>
+  <body>
+    <div class="card">
+        <div class="notsign initialcard">
+            Hey Motherfucker welcome to my page. <br> 
+            Now login so that I can sell your house :)
+        </div>
+      <div class="pic sign"></div>
+      <div class="name sign"></div>
+      <div class="email sign"></div>
 
-        <script>
-          function onSignIn(googleUser) {
-              console.log('Hey' + JSON.stringify(googleUser.getBasicProfile()));
-  
-              document.querySelector('#content').innerText = 
-              googleUser.getBasicProfile().getName();
-          }
-  
-          function signOut() {
-              var auth2 = gapi.auth2.getAuthInstance();
-              auth2.signOut().then(function () {
-              console.log('User signed out.');
-              document.querySelector('#content').innerText = ''
-              });
-              
-         }
-      </script>
-    </body>
+      <div class="g-signin2 notsign" data-onsuccess="onSignIn"></div>
+      <button onclick="signOut();" class="sign signout">Sign out</button>
+    </div>
 
-    
+    <!-- <div id="content"></div> -->
+
+    <script>
+      //   setTimeout(function () {
+      //     var auth2 = gapi.auth2.getAuthInstance();
+      //     if (auth2.isSignedIn.get()) {
+      //       var profile = auth2.currentUser.get().getBasicProfile();
+      //       console.log("ID: " + profile.getId());
+      //       console.log("Full Name: " + profile.getName());
+      //       console.log("Given Name: " + profile.getGivenName());
+      //       console.log("Family Name: " + profile.getFamilyName());
+      //       console.log("Image URL: " + profile.getImageUrl());
+      //       console.log("Email: " + profile.getEmail());
+      //     }
+      //   }, 2000);
+
+      function showUser() {
+        document.querySelectorAll(".sign").forEach((hidden) => {
+          hidden.classList.remove("hidden");
+        });
+        document.querySelectorAll(".notsign").forEach((hidden) => {
+          hidden.classList.add("hidden");
+        });
+
+      }
+
+      function hideUser() {
+        document.querySelectorAll(".sign").forEach((hidden) => {
+          hidden.classList.add("hidden");
+        });
+        document.querySelectorAll(".notsign").forEach((hidden) => {
+          hidden.classList.remove("hidden");
+        });
+      }
+
+      function onSignIn(googleUser) {
+          showUser()
+          profile = googleUser.getBasicProfile()
+          console.log(profile)
+          document.querySelector(".pic").style.background = 
+          "url("+ profile.getImageUrl() + ")"
+          document.querySelector(".name").innerHTML=profile.getName();
+          document.querySelector(".email").innerHTML=profile.getEmail();
+          
+        // console.log("Hey" + JSON.stringify(googleUser.getBasicProfile()));
+
+        // document.querySelector("#content").innerText = googleUser
+        //   .getBasicProfile()
+        //   .getName();
+      }
+
+      function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+          console.log("User signed out.");
+        //   document.querySelector("#content").innerText = "";
+            hideUser()
+            // showUser()
+        });
+      }
+      hideUser()
+    </script>
+  </body>
 </html>
