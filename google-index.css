@@ -1,0 +1,58 @@
+.card .hidden{
+    display: none;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #181a1b;
+}
+
+.card{
+    height: 400px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;              
+    border: 2px solid blue;
+    border-radius: 20px;
+    padding: 50px 20px;
+    gap: 10px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.pic{
+    background-size: cover;
+    height: 100px;
+    width: 100px;
+}
+
+.name{
+    font-size: x-large;
+    color: skyblue;
+}
+
+.email{
+    font-size: large;
+    color: white;
+}
+
+.signout{
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #18687c;
+    color: white;
+    border-radius: 50px;
+    /* border: none; */
+}
+
+.initialcard{
+    color: white;
+    font-size: x-large;
+    padding: 20px;
+    /* line-height: 50px; */
+}
